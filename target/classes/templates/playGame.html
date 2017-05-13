@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymeleaf.org">
+<body>
+
+	<form action="#" th:action="@{/playGame}" th:object="${userAnswers}"
+		method="post">
+
+		<p>
+			Name: <span th:text="${game.name}"></span>
+		</p>
+
+		<table>
+			<tr th:each="question, stat : ${game.getQuestions()}">
+				<td>Question:
+					<p th:text="${game.getQuestions()[__${stat.index}__].questionhead}"></p>
+					<p>Answer:</p> <span
+					th:text="${game.getQuestions()[__${stat.index}__].choice1}"></span>
+<!-- 					<input type="radio" th:name="|stat.index|" th:value="A"
+					th:field="${userAnswers[__${stat.index}__]}" /> --> <span
+					th:text="${game.getQuestions()[__${stat.index}__].choice2}"></span>
+					<!-- <input type="radio" th:name="|stat.index|" th:value="B"
+					th:field="${userAnswers[__${stat.index}__]}" />  --><span
+					th:text="${game.getQuestions()[__${stat.index}__].choice3}"></span>
+					<!-- <input type="radio" th:name="|stat.index|" th:value="C"
+					th:field="${userAnswers[__${stat.index}__]}" /> --> <span
+					th:text="${game.getQuestions()[__${stat.index}__].choice4}"></span>
+					<!-- <input type="radio" th:name="|stat.index|" th:value="D"
+					th:field="${userAnswers[__${stat.index}__]}" /> -->
+				</td>
+			</tr>
+		</table>
+		<input type="submit" />
+	</form>
+
+</body>
+</html>
+

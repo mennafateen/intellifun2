@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymeleaf.org">
+
+<head>
+	 <!-- Bootstrap Core CSS -->
+    <link th:href = "@{css/bootstrap.min.css}" href="css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link th:href = "@{css/formstyle.css}" href="css/formstyle.css" rel="stylesheet"/>	
+
+</head>
+
+<body>
+
+	<div class = "container">
+	<form id = "contact" action ="#" th:action ="@{'/comment/' + ${game.id}}" method ="post">
+		<h3>Add collaborator</h3>
+		<fieldset>
+		<p>Username: <input type ="text" th:field ="*{username}" required  = "required"/></p>
+		</fieldset>
+			
+		<fieldset>
+		<button name = "submit" type ="submit" id = "contact-submit" data-submit="Sending...">Submit </button>
+		</fieldset>
+	</form>
+	</div>
+	
+</body>
+</html>

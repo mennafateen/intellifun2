@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymeleaf.org">
+<head>
+<!-- Bootstrap Core CSS -->
+<link th:href="@{css/bootstrap.min.css}" href="css/bootstrap.min.css"
+	rel="stylesheet" />
+
+<!-- Custom CSS -->
+<link th:href="@{css/formstyle.css}" href="css/formstyle.css"
+	rel="stylesheet" />
+
+</head>
+<body>
+	<div class="container">
+		<div id="contact">
+			<h2>Game home</h2>
+			<p th:text="${game.name}"></p>
+
+			<p>
+				<a th:href="@{'../playGame/' + ${game.id}}"><button
+						name="submit" type="submit" id="contact-submit">Play Game</button></a>
+			</p>
+
+			<p>
+				<a th:href="@{'../commentForm/' + ${game.id}}"><button name="submit" type="submit"
+						id="contact-submit">Leave a comment!</button></a>
+			</p>
+
+			<p>
+				<a href="comment"><button name="submit" type="submit"
+						id="contact-submit">Rate</button></a>
+			</p>
+
+			<div th:if="${type == 'teacher'}">
+				<div th:if="${game.active == false}">
+					<form th:action="@{'/activateGame/' + ${game.id}}">
+						<button name="submit" type="submit" id="contact-submit">Activate</button>
+					</form>
+				</div>
+			</div>
+
+			<div th:if="${type == 'teacher'}">
+				<div th:if="${game.active == true}">
+					<form th:action="@{'/deactivateGame/' + ${game.id}}">
+						<button name="submit" type="submit" id="contact-submit">Deactivate</button>
+					</form>
+				</div>
+			</div>
+
+			<div th:if="${type == 'teacher'}">
+				<form th:action="@{'/copyGame/' + ${game.id}}">
+					<button name="submit" type="submit" id="contact-submit">Copy Game</button>
+				</form>
+			</div>
+			
+			<div th:if="${type == 'teacher'}">
+				<form th:action="@{'/addCollab/' + ${game.id}}">
+					<button name="submit" type="submit" id="contact-submit">Add collaborator</button>
+				</form>
+			</div>
+			
+			<div id="contact" th:each="comment : ${game.comments}"
+				th:object="${game.comments}">
+				<form>
+					<strong th:text="${comment.user.getUsername()}"></strong>
+					<div th:name="submit" id="contact-submit" th:text=" ${comment.thecomment}"
+						th:type="submit"></div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+
+</body>
+</html>
+
